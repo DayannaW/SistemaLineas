@@ -30,11 +30,11 @@
                     <input type="text" class="form-control" placeholder="Escriba un nombre" name="texto">
                     <input class="btn btn-primary" type="submit" id="button-addon2" value="Buscar">
                 </form>
-        @can('administrador')
+       
                 <div class="btn-group mb-3">
                     <a type="button" class="btn btn-primary" aria-label="Input group example" href="{{url('/lineas/create')}}">Crear</a>
                 </div>
-        @endcan
+      
             </div>
         </div>
         <div class="container-md">
