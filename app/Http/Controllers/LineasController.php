@@ -21,7 +21,7 @@ class LineasController extends Controller
     {
         //dd(Auth::user()->name);                          ARREGLAR LAS LINEAS QUE VE EL ADMINISTRADOR
         
-        $lineas=Lineas::where('estado', '!=', 7)->paginate(10);
+        $lineas=Lineas::where('estado', '!=', 7)->paginate(20);
         $usuarios = Usuarios::all();
         $empresa = Empresa::all();
         $cuentas = Cuentas::all();
@@ -208,7 +208,7 @@ class LineasController extends Controller
             ->orwhere('nombreEmpresa','LIKE','%'.texto.'%')
             ->orwhere('nombreCuenta','LIKE','%'.texto.'%')
             ->orwhere('responsable','LIKE','%'.texto.'%');
-        })->paginate(10);
+        })->paginate(20);
 
         return view('linea.index',compact('lineas', 'empresa', 'cuentas', 'actividades'));
     }

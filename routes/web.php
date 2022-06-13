@@ -31,6 +31,7 @@ Route::get('/usuarios/edit/{id}',[UsuariosController::class, 'edit'])->name('usu
 Route::post('/usuarios/update/{id}',[UsuariosController::class, 'update'])->name('usuarios.update');
 Route::get('/usuarios/reasignar/{id}',[UsuariosController::class, 'reasignar'])->name('usuarios.reasignar');
 Route::post('/usuarios/guardarResignar',[UsuariosController::class, 'guardarReasignar'])->name('usuarios.guardarResignar');
+Route::get('/usuarios/buscar',[UsuariosController::class, 'buscar'])->name('usuarios.buscar');
 
 
 Route::get('/lineas', [LineasController::class, 'index'])->name('lineas.index');

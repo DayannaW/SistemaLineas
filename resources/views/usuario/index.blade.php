@@ -25,6 +25,12 @@
                     <button type="button" class="btn btn-outline-secondary">Excel</button>
                     <button type="button" class="btn btn-outline-secondary">CSV</button>
                 </div>
+
+                <form action="{{route('usuarios.buscar')}}" method="get" class="input-group mb-3">
+                    <input type="text" class="form-control" placeholder="Escriba un nombre" name="texto">
+                    <input class="btn btn-primary" type="submit" id="button-addon2" value="Buscar">
+                </form>
+
                 <div class="btn-group mb-3">
                     <a type="button" class="btn btn-primary" aria-label="Input group example" href="{{url('/usuarios/create')}}">Crear</a>
                 </div>
@@ -96,6 +102,7 @@
                 </tbody>
             </table>
         </div>
+        {!!$usuarios->links()!!}
     </div>
 
    

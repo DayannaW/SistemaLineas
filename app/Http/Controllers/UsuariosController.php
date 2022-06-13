@@ -13,7 +13,7 @@ class UsuariosController extends Controller
 
     public function index()
     {
-        $usuarios = Usuarios::all();
+        $usuarios = Usuarios::where('id','>','1')->paginate(20);
         $cuentas = Cuentas::all();
         $actividades = Actividades::all();
         $lineas = Lineas::all();
@@ -40,13 +40,13 @@ class UsuariosController extends Controller
 
     public function reasignar($id)
     {
-        $lineas = Lineas::where('nombres_usuario', NULL)
-                        ->where('estado',0)
-                        ->get();
+       // dd($id);
+        $lineas = Lineas::all();
         //dd($lineas);
         $cuentas = Cuentas::all();
         $actividades = Actividades::all();
         $usuarios = Usuarios::find($id);
+        //dd($usuarios);
         return view('usuario.reasignar', compact('lineas', 'cuentas', 'actividades', 'usuarios'));
     }
 
@@ -76,9 +76,24 @@ class UsuariosController extends Controller
         return redirect()->route('usuarios.index')->with('info', 'linea asignada exitosamente');
     }
 
-    public function show()
+    public function buscar(Request $request)
     {
-        //
+        define('texto',$request['texto'])  ;
+        $cuentas = Cuentas::select('id','nombreCuenta')->get();
+        $actividades = Actividades::select('id','nombreCargo')->get();
+        $lineas = Lineas::all();
+        $usuarios = Usuarios::join('cuentas','cuentas.id','=','usuarios.cuenta')
+        ->join('actividades','actividades.id','=','usuarios.actividad')
+       //dd($usuario);
+         ->where(function($query){
+            $query->orwhere('nombres','LIKE','%'.texto.'%')
+            ->orwhere('apellidos','LIKE','%'.texto.'%')
+            ->orwhere('nombreCargo','LIKE','%'.texto.'%')
+            ->orwhere('nombreCuenta','LIKE','%'.texto.'%')
+            ->orwhere('responsable','LIKE','%'.texto.'%');
+        })->paginate(20);
+
+        return view('usuario.index',compact('lineas', 'cuentas', 'actividades','usuarios'));
     }
 
 

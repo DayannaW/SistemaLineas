@@ -60,7 +60,7 @@
                 <select class="form-select" aria-label="Default select example" name="linea" id="linea">
                     <option selected>seleccione una linea</option>
                     @foreach ($lineas as $linea)
-                    <option value="{{$linea->id}}">{{$linea->numeroLinea}} - Operadora: {{$linea->Operadora}} - Plan: {{$linea->plan}} </option>
+                    <option value="{{$linea->id}}">{{$linea->numeroLinea}}  </option>
                     @endforeach
                 </select>
             </div>

@@ -18,8 +18,10 @@ return new class extends Migration
             $table->string('cedula');
             $table->string('nombres');
             $table->string('apellidos');
+            $table->string('ciudad');
             $table->unsignedBigInteger('cuenta')->nullable();
             $table->unsignedBigInteger('actividad')->nullable();
+            $table->date('fecha_requerimiento');
             $table->unsignedBigInteger('numeroLinea')->nullable();
             $table->string('responsable');
 
